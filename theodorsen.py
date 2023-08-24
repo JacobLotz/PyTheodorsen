@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.special as scsp
 
-
 """
 Theodorsen function and resulting phase and ampl
 """

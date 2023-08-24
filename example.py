@@ -1,4 +1,5 @@
 from theodorsen import *
+import matplotlib.pyplot as plt
 
 """
 Example
