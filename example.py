@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 Example
 """
 # Input
-k = 2.0
+k = 0.3
 extrusion = np.pi/k
-A = 0.1;               # Heave amplitude
+A = 0.03/0.12;               # Heave amplitude
 n = 50				   # Number of time steps
 
 # extrusion = 10*np.pi   # Period T
@@ -28,7 +28,10 @@ plt.plot(t, CLTotalSimple(extrusion, A, n), label = r"$C_l$ total")
 plt.plot(t, HeaveMotionSimple(extrusion, A, n),  linewidth = 1, color = 'black',  label = r"$y$")
 plt.plot(t, HeaveVelocitySimple(extrusion, A, n),  linewidth = 1, color = 'black',  linestyle ="--", label = r"$\dot{y}$")
 plt.plot(t, HeaveAccelerationSimple(extrusion, A, n),  linewidth = 1, color = 'black',  linestyle =":", label = r"$\ddot{y}$")
+plt.plot(t, CLQTSimple(extrusion, A, n),  linewidth = 1, color = 'purple',  linestyle =":", label = r"Quasi static CL")
+#plt.plot(t, AlphaSimple(extrusion, A, n),  linewidth = 1, color = 'orange',  linestyle =":", label = r"Angle of attack")
 
+print(AlphaSimple(extrusion, A, n)/np.pi*180)
 
 # Shrink current axis by 20%
 box = axs.get_position()
