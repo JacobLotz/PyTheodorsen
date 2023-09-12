@@ -2,7 +2,8 @@ import numpy as np
 import scipy.special as scsp
 
 """
-Theodorsen function and resulting phase and ampl
+Theodorsen function and resulting phase and ampl for a heaving foil section. 
+We take velocity U = 1 and chord lenght c = 1.
 """
 def theo_fun(k):
     r"""Returns the value of Theodorsen's function at a reduced frequency :math:`k`.
