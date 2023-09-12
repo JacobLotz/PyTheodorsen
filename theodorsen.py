@@ -64,8 +64,6 @@ Motion functions of the foil: easier to use
 def HeaveMotionSimple(T, A, n):
     t = np.linspace(0,T,n)
     omega = 2*np.pi/T
-    print(omega)
-    print(T)
     return HeaveMotion(omega, A, t)
 
 def HeaveVelocitySimple(T, A, n):
@@ -77,6 +75,16 @@ def HeaveAccelerationSimple(T, A, n):
     t = np.linspace(0,T,n)
     omega = 2*np.pi/T
     return HeaveAcceleration(omega, A, t)
+
+def HeaveAccelerationSimple(T, A, n):
+    t = np.linspace(0,T,n)
+    omega = 2*np.pi/T
+    return HeaveAcceleration(omega, A, t)
+
+def AngleOfAttackSimple(T, A, n):
+    t = np.linspace(0,T,n)
+    omega = 2*np.pi/T
+    return AngleOfAttack(omega, A, t)
 
 
 """
@@ -129,10 +137,5 @@ def CLTotalSimple(T, A, n):
 """
 QS Lift functions
 """
-def AlphaSimple(T, A, n):
-    v = np.arctan(HeaveVelocitySimple(T, A, n))
-    #v = np.arctan(HeaveVelocitySimple(T, A, n)/np.sqrt((1+np.power(HeaveVelocitySimple(T, A, n),2))))
-    return v
-
 def CLQTSimple(T, A, n):
-    return 2*np.pi*AlphaSimple(T, A, n)
+    return 2*np.pi*AngleOfAttackSimple(T, A, n)
