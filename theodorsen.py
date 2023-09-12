@@ -54,6 +54,9 @@ def HeaveVelocity(omega, A, t):
 def HeaveAcceleration(omega, A, t):
 	return -A*(omega**2)*np.sin(omega*t)
 
+def AngleOfAttack(omega, A, t):
+    return np.arctan(HeaveVelocity(omega, A, t)/np.sqrt((1+np.power(HeaveVelocity(omega, A, t),2))))
+
 
 """
 Motion functions of the foil: easier to use
@@ -73,6 +76,16 @@ def HeaveAccelerationSimple(T, A, n):
     omega = 2*np.pi/T
     return HeaveAcceleration(omega, A, t)
 
+def HeaveAccelerationSimple(T, A, n):
+    t = np.linspace(0,T,n)
+    omega = 2*np.pi/T
+    return HeaveAcceleration(omega, A, t)
+
+def AngleOfAttackSimple(T, A, n):
+    t = np.linspace(0,T,n)
+    omega = 2*np.pi/T
+    return AngleOfAttack(omega, A, t)
+
 
 """
 Theodoorsen lift functions --> Easier: use the simple functions
@@ -83,10 +96,10 @@ def CLAddedMass(omega, A, t):
 def CLCirc(omega, A, t, k):
     # The minus sign here is debatable. In other derivations it is not present. But I think it should be
     # out of phase with the heave velocity
-	return -2.0 * np.pi * HeaveVelocity(omega, A, t)*TheoAmpl(k)
+	return -2.0 * np.pi * (AngleOfAttack(omega, A, t) - 3.0/180.0*np.pi)*TheoAmpl(k)
 
 def CLTotal(omega, A, t, t_cir, k):
-	return CLAddedMass(omega, A, t_cir) + CLCirc(omega, A, t, k)
+	return  CLAddedMass(omega, A, t_cir) + HeaveVelocity(omega, A, t)*CLCirc(omega, A, t, k)
 
 
 """
@@ -124,9 +137,5 @@ def CLTotalSimple(T, A, n):
 """
 QS Lift functions
 """
-def AlphaSimple(T, A, n):
-    v = HeaveVelocitySimple(T, A, n)
-    return np.tan(-v)
-
 def CLQTSimple(T, A, n):
-    return 2*np.pi*AlphaSimple(T, A, n)
+    return 2*np.pi*AngleOfAttackSimple(T, A, n)

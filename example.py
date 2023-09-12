@@ -6,11 +6,9 @@ Example
 """
 # Input
 k = 2.0
-extrusion = np.pi/k
+extrusion = np.pi/k    # Period T
 A = 0.1;               # Heave amplitude
 n = 50				   # Number of time steps
-
-# extrusion = 10*np.pi   # Period T
 
 # Calc var
 t = np.linspace(0,extrusion, n)
@@ -28,7 +26,6 @@ plt.plot(t, CLTotalSimple(extrusion, A, n), label = r"$C_l$ total")
 plt.plot(t, HeaveMotionSimple(extrusion, A, n),  linewidth = 1, color = 'black',  label = r"$y$")
 plt.plot(t, HeaveVelocitySimple(extrusion, A, n),  linewidth = 1, color = 'black',  linestyle ="--", label = r"$\dot{y}$")
 plt.plot(t, HeaveAccelerationSimple(extrusion, A, n),  linewidth = 1, color = 'black',  linestyle =":", label = r"$\ddot{y}$")
-
 
 # Shrink current axis by 20%
 box = axs.get_position()
